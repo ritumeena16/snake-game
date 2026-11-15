@@ -1,0 +1,177 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+
+:root{
+    /* backgroung-color */
+    
+    --bg-primery-color:#080707;
+
+     /* fill-color */
+
+     --bg-fill-color: #f2fc3e;
+
+     /* food-color */
+
+     --bg-food-color:rgb(189, 53, 53);
+
+    /* text-color */
+     --text-primery-color: #f0f0f0;
+
+     /* space-variables */
+
+     --space-xs: 4px;
+     --space-sm: 8px;
+     --space-md: 16px;
+     --space-lg: 24px;
+     --sapce-xl: 32px;
+     --space-2xl: 40px;
+     --space-3xl: 48px;
+
+     /* border-colors */
+
+     --border-primery-color:#33333333;
+
+     /* border-radius */
+
+     --border-radius-xs:4px;
+     --border-radius-sm: 8px;
+     --border-radius-md: 12px;
+     --border-radius-lg: 16px;
+     --border-radius-xl: 20px;
+     --border-radius-2xl: 24px;
+
+       /* border-radius */
+
+     --padding-xs:4px;
+     --padding-sm: 8px;
+     --padding-md: 16px;
+     --padding-lg: 24px;
+     --padding-xl: 32px;
+     --padding-2xl: 40px;
+}
+
+html{
+     background-color: var(--bg-primery-color);
+    color: var(--text-primery-color);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+main,section{
+    width: 100%;
+    height: 100%;
+}
+
+section{
+padding: var(--space-2xl);
+display: flex;
+flex-direction: column;
+height: 100%;
+gap: var(--border-radius-md);
+}
+
+section .infos{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infos{
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--border-primery-color);
+    border-radius: var(--border-radius-sm);
+}
+
+.board{
+    border: 1px solid var(--border-primery-color);
+    border-radius: var(--border-radius-sm);
+    /* //parent ka jitna space khali aquipied it */
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minMax(30px, 1fr));
+    grid-template-rows: repeat(auto-fill, minMax(30px, 1fr));
+}
+
+.block{
+    /* width: 30px;
+    height: 30px; */
+    border: 1px solid var(--border-primery-color);
+    border-radius: 50%;
+}
+
+.fill{
+    background-color: var(--bg-fill-color);
+}
+
+.food{
+    background-color: var(--bg-food-color);
+}
+
+.modal{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    background-color: transparent;
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .start-game,
+.modal .game-over{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.modal .game-over{
+    display: none;
+}
+
+.over{
+    display: flex;
+}
+
+.modal button{
+  font-size: 1.2rem;
+  padding: var(--padding-sm) var(--padding-md);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.modal button:hover{
+transform: scale(1.1);
+}
+
+
+body,
+.board{
+    touch-action: none;
+    overscroll-behavior: none;
+}
+
+@media (max-width: 600px){
+section{
+    padding: var(--padding-md);
+}
+.infos h3{
+    font-size: 0.9rem;
+}
+.modal h1{
+    font-size: 1.5rem;
+    text-align: center;
+}
+}

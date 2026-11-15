@@ -1,0 +1,16 @@
+{
+  "name": "Snake Arcade Game",
+  "short_name": "Snake",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#080707",
+  "theme_color": "#080707",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
