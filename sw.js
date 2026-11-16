@@ -1,4 +1,4 @@
-const CACHE_NAME = "snake-game-v1";
+const CACHE_NAME = "snake-game-v2";
 const ASSETS = [
   "./",
   "./index.html",
@@ -23,5 +23,18 @@ self.addEventListener("fetch", (e) => {
     caches.match(e.request).then((response) => {
       return response || fetch(e.request);
     })
+  );
+});
+
+self.addEventListener("activate",(e)=>{
+  e.waitUntil(
+   //jb vaada poora ho jaye tb ye kaam kerna
+   caches.keys().then((keys)=>{
+    //ager mera kaam poora ho gya tabi promise return kerna nhi to rok dena
+    return Promise.all(
+     keys.filter((key)=> key !== CACHE_NAME)
+     .map((key)=> caches.delete(key))
+    );
+   })
   );
 });
