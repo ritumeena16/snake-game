@@ -19,6 +19,7 @@ const timeElement = document.querySelector("#time");
 let time = '00 - 00';
 let score = 0;
 let highScore = localStorage.getItem("highScore")? JSON.parse(localStorage.getItem("highScore")): 0;
+let speed = 300;
 
 highScoreElement.innerText = highScore;
 
@@ -109,6 +110,7 @@ function render(){
 
     if(head.x<0 || head.x>=rows || head.y<0 || head.y>=cols){
         clearInterval(isIntervalId);//clear
+        clearInterval(timerId);
         modal.style.display = "flex";//modal
         startGame.style.display = "none";//none
         gameOver.style.display = "flex";//flex
@@ -140,8 +142,12 @@ function render(){
         localStorage.setItem("highScore", JSON.stringify(score));
      }
 
+       if(speed>80){
+        speed-=15;
+        clearInterval(isIntervalId);
+        isIntervalId = setInterval(render, speed);
+       }
     }
-
     snake.unshift(head);//add at beginning
 
     snake.pop();//remove from end
@@ -160,7 +166,7 @@ isIntervalId = setInterval(()=>{
     
     render();
 
-},1000);
+},speed);
 
 //destructuring
 
@@ -180,7 +186,7 @@ isIntervalId = setInterval(()=>{
 
    timeElement.innerText = time;
 
-},300);
+},1000);
 
 });
 
@@ -201,7 +207,8 @@ function restartGame(){
 
     score = 0;
     time = `00 - 00`;
-
+    speed = 300;
+    direction = 'down';
     
     scoreElement.innerText = score;
     highScoreElement.innerText = highScore;
@@ -226,7 +233,26 @@ function restartGame(){
 
     isIntervalId = setInterval(()=>{
         render();
-    },300); 
+    },speed); 
+
+
+    timerId = setInterval(()=>{
+
+   let [min, sec] = time.split("-").map(Number);
+
+   if(sec===59){
+    min+=1;
+    sec = 0;
+   } 
+   else{
+    sec += 1;
+   }
+
+   time = `${min}-${sec}`;
+
+   timeElement.innerText = time;
+
+},1000);
 
 }
 
